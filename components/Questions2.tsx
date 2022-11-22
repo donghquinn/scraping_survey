@@ -22,7 +22,6 @@ function Questions2 () {
             </button>
           </label>
       </div>
-      {reasons}
     </div>
   )
 }

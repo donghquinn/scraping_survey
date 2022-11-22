@@ -47,7 +47,6 @@ function Questions1() {
         </label>
       </div>
         <div className="form-control">
-
             <label className="label cursor-pointer">
                     <span className="label-text question">기타</span> 
               <input type="text" placeholder="사용하시는 플랫폼을 적어주세요" className="input input-bordered" onChange={onChange}/>
@@ -56,8 +55,8 @@ function Questions1() {
               }}> 확인
             </button>
           </label>
-     
       </div>
+      당신의 응답: {platforms}
     </div>
   )
 }

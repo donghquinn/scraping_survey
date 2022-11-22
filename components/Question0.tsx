@@ -91,7 +91,7 @@ function Questions0() {
           }}/> 
         </label>
       </div>
-
+     당신의 응답: {age}
     </div>
   )
 }
