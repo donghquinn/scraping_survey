@@ -1,0 +1,16 @@
+---
+version: '3.7'
+services:
+  front:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    expose:
+      - 3000
+    container_name: front
+    restart: always
+    networks:
+      - proxy
+networks:
+  proxy:
+    external: true
