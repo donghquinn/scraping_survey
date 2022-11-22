@@ -17,6 +17,11 @@ export const partiAge = atom({
   default: "",
 });
 
+export const totalCountResponse = atom({
+  key: "totalCountResponse",
+  default: "",
+});
+
 export async function requestDataInput(
   age: string,
   platforms: string,

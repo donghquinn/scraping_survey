@@ -1,12 +1,19 @@
 import axios from "axios"
 import Link from "next/link";
-import { requestDataInput } from "./test";
+import { useRecoilState } from "recoil";
+import { requestDataInput, totalCountResponse } from "./test";
 
 function Submit(props: {age: string, platforms: string, reasons: string}) {
   const {age, platforms, reasons} = props;
+  const [totalCount, setTotalCount] = useRecoilState(totalCountResponse)
 
   const submitButton = async() => {
-    await requestDataInput(age, platforms, reasons);
+    const response = await requestDataInput(age, platforms, reasons);
+    
+    const {returnObject, surveytotal, platformReturnData, reasonsWithPlatforms} = response.dataRes;
+    setTotalCount(surveytotal);
+
+    return {returnObject, surveytotal, platformReturnData, reasonsWithPlatforms}
   }
 
   return (
