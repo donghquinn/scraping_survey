@@ -19,7 +19,7 @@ function Submit(props: {age: string, platforms: string, reasons: string}) {
   return (
     <div>
       <Link href='/result'>
-        <button className="btn" onClick={submitButton}>제출하기</button>
+        <button className="btn" onClick={async() => await submitButton()}>제출하기</button>
       </Link>
     </div>
   )
