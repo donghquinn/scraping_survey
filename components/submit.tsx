@@ -7,7 +7,7 @@ function Submit(props: {age: string, platforms: string, reasons: string}) {
   const {age, platforms, reasons} = props;
   const [totalCount, setTotalCount] = useRecoilState(totalCountResponse)
 
-  const submitButton = async() => {
+  const submitButton = async(age: string, platforms: string, reasons: string) => {
     const response = await requestDataInput(age, platforms, reasons);
     
     const {returnObject, surveytotal, platformReturnData, reasonsWithPlatforms} = response.dataRes;
@@ -19,7 +19,7 @@ function Submit(props: {age: string, platforms: string, reasons: string}) {
   return (
     <div>
       <Link href='/result'>
-        <button className="btn" onClick={async() => await submitButton()}>제출하기</button>
+        <button className="btn" onClick={async() => await submitButton(age, platforms, reasons)}>제출하기</button>
       </Link>
     </div>
   )
