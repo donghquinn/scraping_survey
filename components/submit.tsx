@@ -9,17 +9,9 @@ function Submit(props: {age: string, platforms: string, reasons: string}) {
 
   return (
     <div>
-        <button className="btn" onClick={async() => {
-           try {
-            const response = await requestDataInput(age, platforms, reasons);
-            
-            return (
-              <div>완료</div>
-            )
-           } catch (error) {
-            throw new AxiosError('[ERROR!]');
-           }
-        }}>제출하기</button>
+      <Link href='/result'>
+        <button className="btn">제출하기</button>
+      </Link>
     </div>
   )
 }

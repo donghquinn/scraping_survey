@@ -36,10 +36,47 @@ export async function requestDataInput(
         reasons,
       }
     );
+    setTotalCount(request.data.dataRes.surveytotal);
 
-    const { data } = request;
+    const platformComponents = request.data.dataRes.platformReturnData.map(
+      (item) => {
+        const returnData = {
+          platform: item.platforms,
+          count: item.count,
+        };
 
-    return data;
+        return `
+          <div>
+            플랫폼 이름: ${returnData.platform}
+            응답 개수: ${returnData.count}
+          </div>
+          `;
+      }
+    );
+
+    const reasonComponent = request.data.dataRes.reasonsWithPlatforms.map(
+      (item) => {
+        const returnData = {
+          platform: item.platforms,
+          reason: item.reasons,
+          count: item.count,
+        };
+
+        return `
+          <div>
+            플랫폼 이름: ${returnData.platform}
+            사용하는 이유: ${returnData.reason}
+            응답 개수: ${returnData.count}
+          </div>
+          `;
+      }
+    );
+
+    const ageComponent = () => {
+      return `<div>나이: ${request.data.dataRes.returnObject.age};</div>`;
+    };
+
+    return { platformComponents, reasonComponent, ageComponent };
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new AxiosError("[SURVEY] Axios Error");
@@ -52,3 +89,16 @@ export async function requestDataInput(
     throw new AxiosError(JSON.stringify(error));
   }
 }
+
+function setTotalCount(surveytotal: any) {
+  throw new Error("Function not implemented.");
+}
+// export async function returnData(age, string, reasons) {
+//   async () => {
+//     try {
+//      const response = await requestDataInput(age, platforms, reasons);
+
+//     } catch (error) {
+//      throw new AxiosError('[ERROR!]');
+//     }
+// }
