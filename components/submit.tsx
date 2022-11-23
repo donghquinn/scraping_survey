@@ -1,16 +1,23 @@
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import Link from "next/link";
-import { useRecoilState } from "recoil";
-import { requestDataInput, totalCountResponse } from "./test";
+import { requestDataInput } from "./test";
 
 function Submit(props: {age: string, platforms: string, reasons: string}) {
   const {age, platforms, reasons} = props;
-  const [totalCount, setTotalCount] = useRecoilState(totalCountResponse)
 
   return (
     <div>
-      <Link href='/result'>
-        <button className="btn">제출하기</button>
+      <Link href='/done'>
+        <button className="btn" onClick={async() => {
+          try {
+            await requestDataInput(age, platforms, reasons);
+          } catch (error) {
+            if (axios.isAxiosError(error)) {
+              throw new AxiosError('[AXIOS ERROR]');
+            }
+          }
+
+        }}>제출하기</button>
       </Link>
     </div>
   )
